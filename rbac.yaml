@@ -57,7 +57,7 @@ kind: ClusterRole
 metadata:
   name: expense
 rules:
-- apiGroups: [""]
+- apiGroups: [""] #core api group contains the following resources: pods, services, endpoints, configmaps, secrets, namespaces, nodes, persistentvolumes etc. So the above rule gives permissions to all resources in the core API group.
   resources: ["nodes","persistentvolumes","namespaces"]
   verbs: ["get","list","watch"]
 ---
