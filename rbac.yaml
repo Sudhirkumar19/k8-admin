@@ -25,7 +25,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io # this is required to specify the api group for the user or group or service account. 
   kind: User
-  name: Sudhir Kumar # change to your name or email id which is used to login to the cluster. This will give the permissions defined in the role to the user.
+  name: sudhir # change to your name or email id which is used to login to the cluster. This will give the permissions defined in the role to the user.
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
