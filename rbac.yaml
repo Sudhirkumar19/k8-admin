@@ -8,3 +8,23 @@ rules:
   resources: ["pods"]
   verbs: ["get", "watch", "list"]
    # above verbs are read only permissions. If you want to give write permissions then you can add "create", "update", "delete" verbs in the above list.
+
+# Now bind the role to the use using RoleBinding. RoleBinding is used to bind the role to the user or group or service account.
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+    name: expense-trainee
+    namespace: expense
+roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: expense-trainee
+subjects:
+- apiGroup: rbac.authorization.k8s.io # this is required to specify the api group for the user or group or service account. 
+  kind: User
+  name: Sudhir Kumar # change to your name or email id which is used to login to the cluster. This will give the permissions defined in the role to the user.
+
+
