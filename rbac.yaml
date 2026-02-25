@@ -76,3 +76,19 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 
+# Two important points in RBAC are:
+
+#1. EKS is intetergrated with IAM for authentication. So we can use IAM users and groups to authenticate to the cluster. But for authorization we have to use RBAC. So we can create roles and role bindings in the cluster to give permissions to the users and groups.
+
+#2. aws-auth configmap is used to map the IAM users and groups to the Kubernetes users and groups. So we have to edit the aws-auth configmap to give permissions to the IAM users and groups to access the cluster. We can use kubectl edit configmap aws-auth -n kube-system command to edit the configmap and add the IAM users and groups in the mapUsers section. After editing the configmap we have to apply it to the cluster using kubectl apply -f aws-auth.yaml command.
+
+## the architecture of RBAC in Kubernetes is as follows:
+
+# 1. User or group or service account is authenticated to the cluster using IAM or other authentication mechanisms.
+
+# 2. Once the user or group or service account is authenticated, then the RBAC system checks the roles and role bindings to see what permissions the user or group or service account has.
+
+# 3. If the user or group or service account has the required permissions, then it can access the resources in the cluster. If not, then it will get a permission denied error.
+
+# diagramatically represented as below:
+# User or Group or Service Account --> Authentication --> RBAC System --> Authorization --> Access to Resources
